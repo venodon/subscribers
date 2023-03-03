@@ -15,12 +15,12 @@ class m230303_110509_create_subscriber_table extends Migration
         $this->createTable('{{%subscriber}}', [
             'id' => $this->primaryKey(),
             'email' => $this->string()->comment('Получатель')->notNull(),
-            'event' => $this->integer()->unsigned()->notNull()->comment('Событие'),
+            'event_id' => $this->integer()->unsigned()->notNull()->comment('Событие'),
             'is_blocked' => $this->integer(1)->unsigned()->notNull()->defaultValue(0)->comment('Заблокирован'),
             'created_at' => $this->dateTime()->comment('Дата добавления'),
             'updated_at' => $this->dateTime()->comment('Дата редактирования')
         ]);
-        $this->createIndex('u_event_email', 'subscriber', ['email', 'event'], true);
+        $this->createIndex('u_event_email', 'subscriber', ['email', 'event_id'], true);
     }
 
     /**
