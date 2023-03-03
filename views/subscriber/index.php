@@ -36,13 +36,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'event_id',
                 'value' => function ($model) {
                     return $model->event;
-                }
+                },
+                'filter' => Subscriber::EVENT_LIST
             ],
             [
                 'attribute' => 'is_blocked',
                 'value' => function ($model) {
                     return $model->is_blocked ? 'Да' : 'Нет';
-                }
+                },
+                'filter' => [0 => 'Нет', 1 => 'Да']
             ],
             [
                 'class' => ActionColumn::className(),
