@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Subscriber;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -77,6 +78,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            // Тут мы вызываем ивент
+            Yii::info(['event' => Subscriber::EVENT_LOGIN, 'user' => Yii::$app->user->identity], 'event');
             return $this->goBack();
         }
 

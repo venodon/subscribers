@@ -11,7 +11,7 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -37,11 +37,16 @@ $config = [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                [
+                'all' => [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
-            ],
+                'info' => [
+                    'class' => 'app\helpers\MessageTarget',
+                    'categories' => ['event'],
+                    'logVars' => [],
+                ],
+            ]
         ],
         'db' => $db,
 
