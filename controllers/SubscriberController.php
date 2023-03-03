@@ -132,8 +132,14 @@ class SubscriberController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+        if (!$model) {
+            throw new NotFoundHttpException('Подписчик не найден');
+        }
+        $model->is_blocked = 1;
+        if(!$model->save()){
+            Yii::$app->session->setFlash('error','Ошибка при блокировке подписчика');
+        }
         return $this->redirect(['index']);
     }
 
