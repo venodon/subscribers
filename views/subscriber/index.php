@@ -42,9 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'is_blocked',
                 'value' => function ($model) {
-                    return $model->is_blocked ? 'Да' : 'Нет';
+                    return $model->blocked;
                 },
-                'filter' => [0 => 'Нет', 1 => 'Да']
+                'filter' => Subscriber::BLOCKED_STATUSES
             ],
             [
                 'class' => ActionColumn::className(),

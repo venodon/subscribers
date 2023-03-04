@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'event_id')->dropDownList(Subscriber::EVENT_LIST) ?>
 
-    <?= $form->field($model, 'is_blocked')->dropDownList([0 => 'Нет', 1 => 'Да']) ?>
+    <?= $form->field($model, 'is_blocked')->dropDownList(Subscriber::BLOCKED_STATUSES) ?>
 
     <?php if (!$model->isNewRecord): ?>
         <?= $form->field($model, 'id')->textInput(['disabled' => 1]) ?>

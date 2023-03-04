@@ -11,6 +11,7 @@ use Yii;
  * @property string $email Получатель
  * @property int $event_id Событие
  * @property string $event Событие
+ * @property string $blocked Заблокирован
  * @property int $is_blocked Заблокирован
  * @property string|null $created_at Дата добавления
  * @property string|null $updated_at Дата редактирования
@@ -31,12 +32,24 @@ class Subscriber extends \yii\db\ActiveRecord
         self::EVENT_MESSAGE => 'Отправка сообщения'
     ];
 
+    const BLOCKED_STATUSES = [
+        0 => 'Нет',
+        1 => 'Да'
+    ];
+
     /**
      * @return string
      */
     public function getEvent()
     {
         return self::EVENT_LIST[$this->event_id] ?? '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlocked(){
+        return self::BLOCKED_STATUSES[$this->is_blocked] ?? '';
     }
 
     /**

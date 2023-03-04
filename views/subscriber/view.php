@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'is_blocked',
                 'value' => function ($model) {
-                    return $model->is_blocked ? 'Да' : 'Нет';
+                    return $model->blocked;
                 }
             ],
             'created_at',
